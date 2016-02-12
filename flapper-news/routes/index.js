@@ -48,6 +48,8 @@ router.get('/posts/:post', function(req, res) {
     res.json(req.post);
 });
 */
+
+/* Nuova */
 router.get('/posts/:post', function(req, res, next) {
     req.post.populate('comments', function(err, post) {
         if (err) { return next(err); }
@@ -55,6 +57,7 @@ router.get('/posts/:post', function(req, res, next) {
         res.json(post);
     });
 });
+
 
 router.put('/posts/:post/upvote', function(req, res, next) {
     req.post.upvote(function(err, post){
